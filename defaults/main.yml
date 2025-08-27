@@ -1,2 +1,11 @@
 ---
 # defaults file for kubectl
+
+# kubectl version to install
+# latest version: https://cdn.dl.k8s.io/release/stable.txt
+kubectl_version: "latest"
+
+# Define where to install kubectl binary
+# Default: use local system path defined in Ansible vars/*.yml
+# Linux: /usr/local/bin/
+kubectl_path: "{{ default_kubectl_path }}"

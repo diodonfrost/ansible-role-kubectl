@@ -3,3 +3,6 @@
 
 - name: Include OS specific variables.
   ansible.builtin.include_vars: "{{ ansible_system }}.yml"
+
+- name: Install Kubectl
+  ansible.builtin.include_tasks: "setup-{{ ansible_system }}.yml"

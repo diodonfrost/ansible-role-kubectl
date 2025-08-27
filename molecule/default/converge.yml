@@ -1,7 +1,5 @@
 ---
 - name: Converge
   hosts: all
-  tasks:
-    - name: "Include ansible-role-kubectl"
-      ansible.builtin.include_role:
-        name: "ansible-role-kubectl"
+  roles:
+    - role: diodonfrost.kubectl
