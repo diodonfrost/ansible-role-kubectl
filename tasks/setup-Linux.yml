@@ -3,7 +3,7 @@
 
 - name: Linux | Get the latest kubcel published full release for the repository
   ansible.builtin.uri:
-    url: https://cdn.dl.k8s.io/release/stable.txt
+    url: https://dl.k8s.io/release/stable.txt
     return_content: yes
     headers:
       Accept: application/vnd.github.v3+json
