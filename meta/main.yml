@@ -20,18 +20,6 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
-    - name: FreeBSD
-      versions:
-        - all
-    - name: OpenBSD
-      versions:
-        - all
-    - name: MacOSX
-      versions:
-        - all
-    - name: Windows
-      versions:
-        - all
 
   galaxy_tags:
     - kubernetes

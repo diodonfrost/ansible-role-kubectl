@@ -1,2 +1,2 @@
 ---
-default_kubectl_path: /usr/local/bin/
+_default_kubectl_path: /usr/local/bin/

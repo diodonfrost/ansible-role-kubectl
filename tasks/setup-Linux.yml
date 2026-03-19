@@ -1,15 +1,12 @@
 ---
 # tasks file for install kubectl on Linux system
 
-- name: Linux | Get the latest kubcel published full release for the repository
+- name: Linux | Get the latest kubectl published full release for the repository
   ansible.builtin.uri:
     url: https://dl.k8s.io/release/stable.txt
-    return_content: yes
-    headers:
-      Accept: application/vnd.github.v3+json
-      User-Agent: Ansible
+    return_content: true
   register: kubectl_latest_version
-  check_mode: no
+  check_mode: false
   when: kubectl_version == "latest"
 
 - name: Linux/Unix | Setup the latest kubectl version
@@ -17,14 +14,14 @@
     kubectl_version_to_install: "{{ kubectl_latest_version.content }}"
   when: kubectl_version == "latest"
 
-- name: Linux | Use the specified kubectl version when latest var is not define
+- name: Linux | Use the specified kubectl version when latest var is not defined
   ansible.builtin.set_fact:
     kubectl_version_to_install: "{{ kubectl_version }}"
   when: kubectl_version != "latest"
 
 # This task avoids downloading kubectl every time
 - name: Linux | Check if kubectl is present with the right version
-  ansible.builtin.command: "{{ kubectl_path }}kubectl version"
+  ansible.builtin.command: "{{ kubectl_path }}kubectl version --client"
   register: kubectl_installed_version
   ignore_errors: true
   changed_when: false
@@ -35,7 +32,4 @@
     url: "https://dl.k8s.io/release/{{ kubectl_version_to_install }}/bin/linux/amd64/kubectl"
     dest: "{{ kubectl_path }}"
     mode: u+x,g+x,o+x
-    headers:
-      Accept: application/vnd.github.v3+json
-      User-Agent: Ansible
   when: kubectl_version_to_install not in kubectl_installed_version.stdout | default('empty')
