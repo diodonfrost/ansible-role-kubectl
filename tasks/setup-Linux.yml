@@ -4,7 +4,9 @@
 - name: Linux | Get the latest kubectl published full release for the repository
   ansible.builtin.uri:
     url: https://dl.k8s.io/release/stable.txt
-    return_content: true
+    return_content: yes
+  retries: 3
+  delay: 5
   register: kubectl_latest_version
   check_mode: false
   when: kubectl_version == "latest"
