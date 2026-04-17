@@ -3,20 +3,14 @@ ansible-role-kubectl
 
 Ansible role for install kubectl package.
 
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+| Variable                  | Default                      | Description                                                                                                                        |
+|---------------------------|------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `kubectl_version`         | `"latest"`                   | Version of kubectl to install. `"latest"` resolves the current stable release via `https://dl.k8s.io/release/stable.txt`; otherwise pin a literal version (e.g. `"v1.29.0"`). |
+| `kubectl_path`            | `/usr/local/bin/` (on Linux) | Directory where the `kubectl` binary is installed. Must end with a trailing slash.                                                 |
+| `kubectl_checksum_verify` | `true`                       | When enabled, the downloaded binary is checked against the SHA256 published at `https://dl.k8s.io/release/<version>/bin/linux/amd64/kubectl.sha256`. Set to `false` to skip verification (e.g. air-gapped environments). |
 
 Example Playbook
 ----------------

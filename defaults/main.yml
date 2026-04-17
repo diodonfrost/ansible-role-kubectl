@@ -9,3 +9,7 @@ kubectl_version: "latest"
 # Default: use local system path defined in Ansible vars/*.yml
 # Linux: /usr/local/bin/
 kubectl_path: "{{ _default_kubectl_path }}"
+
+# Verify the SHA256 checksum of the downloaded kubectl binary against
+# the one published at https://dl.k8s.io/release/<version>/bin/linux/amd64/kubectl.sha256
+kubectl_checksum_verify: true

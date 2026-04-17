@@ -34,4 +34,5 @@
     url: "https://dl.k8s.io/release/{{ kubectl_version_to_install }}/bin/linux/amd64/kubectl"
     dest: "{{ kubectl_path }}"
     mode: u+x,g+x,o+x
+    checksum: "{{ ('sha256:https://dl.k8s.io/release/' ~ kubectl_version_to_install ~ '/bin/linux/amd64/kubectl.sha256') if kubectl_checksum_verify else omit }}"
   when: kubectl_version_to_install not in kubectl_installed_version.stdout | default('empty')
