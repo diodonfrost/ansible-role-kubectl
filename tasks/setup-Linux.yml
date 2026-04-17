@@ -11,7 +11,7 @@
   check_mode: false
   when: kubectl_version == "latest"
 
-- name: Linux/Unix | Setup the latest kubectl version
+- name: Linux | Setup the latest kubectl version
   ansible.builtin.set_fact:
     kubectl_version_to_install: "{{ kubectl_latest_version.content }}"
   when: kubectl_version == "latest"
